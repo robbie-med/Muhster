@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="MUSTER icon">
-  <rect width="512" height="512" rx="96" fill="#0b1f33"/>
-  <path d="M256 64l150 54v112c0 102-60 178-150 218-90-40-150-116-150-218V118l150-54z" fill="#173b2f" stroke="#b8944d" stroke-width="22"/>
-  <path d="M256 144v210M176 226h160" stroke="#f7f3ea" stroke-width="34" stroke-linecap="round"/>
-</svg>
