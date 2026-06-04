@@ -13,7 +13,12 @@ function toBase64(bytes: Uint8Array): string {
 }
 
 function fromBase64(value: string): Uint8Array {
-  return Uint8Array.from(atob(value), (char) => char.charCodeAt(0));
+  const binary = atob(value);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
 }
 
 async function deriveDemoKey(context: string): Promise<CryptoKey> {
@@ -30,7 +35,12 @@ export const browserDemoCryptoProvider: CryptoProvider = {
   },
   async decryptString(payload, context) {
     const key = await deriveDemoKey(context);
-    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: fromBase64(payload.nonce) }, key, fromBase64(payload.ciphertext));
+    const ciphertextBytes = fromBase64(payload.ciphertext);
+    const decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: fromBase64(payload.nonce).buffer as ArrayBuffer },
+      key,
+      ciphertextBytes.buffer as ArrayBuffer
+    );
     return new TextDecoder().decode(decrypted);
   }
 };

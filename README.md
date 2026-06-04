@@ -42,6 +42,16 @@ npm run dev
 
 Open the local URL printed by Vite.
 
+## GitHub Pages deployment
+
+Build and publish to GitHub Pages from the `dist/` folder:
+
+```bash
+npm run deploy
+```
+
+This generates a production build and publishes it to the `gh-pages` branch.
+
 ## Commands
 
 ```bash
